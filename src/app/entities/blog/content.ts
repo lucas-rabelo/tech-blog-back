@@ -9,7 +9,7 @@ export class Content {
     return content.length >= 5;
   }
 
-  contructor(content: string) {
+  constructor(content: string) {
     const isContentLengthIsValid = this.validateContentLength(content);
 
     if (!isContentLengthIsValid) {

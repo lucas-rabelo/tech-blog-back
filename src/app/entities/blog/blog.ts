@@ -2,7 +2,7 @@ import { Replace } from '@helpers/Replace';
 import { randomUUID } from 'crypto';
 import { Content } from './content';
 
-type BlogProps = {
+export type BlogProps = {
   title: string;
   content: Content;
   categoryId: string;
@@ -28,6 +28,14 @@ export class Blog {
 
   public get id() {
     return this._id;
+  }
+
+  public set title(title: string) {
+    this.props.title = title;
+  }
+
+  public get title() {
+    return this.props.title;
   }
 
   public set content(content: Content) {
