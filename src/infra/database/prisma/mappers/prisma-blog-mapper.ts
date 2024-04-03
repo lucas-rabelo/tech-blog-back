@@ -7,7 +7,7 @@ export class PrismaBlogMapper {
         return {
             id: blog.id,
             title: blog.title,
-            content: blog.content,
+            content: String(blog.content),
             categoryId: blog.categoryId,
             imageUrl: blog.imageUrl,
             authorId: blog.authorId,

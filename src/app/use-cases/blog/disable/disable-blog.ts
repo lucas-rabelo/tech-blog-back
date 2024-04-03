@@ -1,12 +1,13 @@
 import { BlogRepository } from "@application/repositories/blog-repository";
 import { BlogNotFound } from "@application/use-cases/errors/blog-not-found";
+import { Injectable } from "@nestjs/common";
 
 type DisableBlogRequest = {
     blogId: string
 }
 
 type DisableBlogResponse = void;
-
+@Injectable()
 export class DisableBlog {
     constructor(private blogsRepository: BlogRepository) {}
 

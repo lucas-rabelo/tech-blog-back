@@ -1,6 +1,7 @@
 import { Blog } from "@application/entities/blog/blog";
 import { Content } from "@application/entities/blog/content";
 import { BlogRepository } from "@application/repositories/blog-repository";
+import { Injectable } from "@nestjs/common";
 
 type SendBlogRequest = {
     title: string;
@@ -14,7 +15,7 @@ type SendBlogRequest = {
 type SendBlogResponse = {
     blog: Blog;
 }
-
+@Injectable()
 export class SendBlog {
     constructor(private blogsRepository: BlogRepository) {}
 
