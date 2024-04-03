@@ -27,7 +27,7 @@ export class EditTypeUser {
             title
         }, typeUser.id);
 
-        typeUser.update();
+        typeUserEdit.update();
 
         await this.typeUserRepository.save(typeUserEdit);
     }

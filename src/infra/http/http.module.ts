@@ -6,6 +6,7 @@ import { DatabaseModule } from "@infra/database/database.module";
 import { ActiveBlog } from "@application/use-cases/blog/active/active-blog";
 import { DisableBlog } from "@application/use-cases/blog/disable/disable-blog";
 import { SendBlog } from "@application/use-cases/blog/send/send-blog";
+import { ListBlog } from "@application/use-cases/blog/list/list-blog";
 
 // Use Cases of Category
 import { SendCategory } from "@application/use-cases/categories/send/send-category";
@@ -31,6 +32,7 @@ import { ListTypeUser } from "@application/use-cases/typeUser/list/list-type-use
         SendBlog,
         ActiveBlog,
         DisableBlog,
+        ListBlog,
 
         SendCategory,
 
