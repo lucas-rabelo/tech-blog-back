@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  engineType = "binary"
 }
 
 datasource db {
@@ -11,10 +12,16 @@ datasource db {
 }
 
 model Category {
-  id    String @id @default(uuid())
-  title String
+  id           String    @id @default(uuid())
+  title        String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime?
+  createdById  String    @default(cuid())
+  updatedById  String?
 
   blogs Blog[]
+  createdBy User  @relation("CreatedBy", fields: [createdById], references: [id])
+  UpdatedBy User? @relation("UpdatedBy", fields: [updatedById], references: [id])
 
   @@map("categories")
 }
@@ -25,18 +32,25 @@ model User {
   email      String @unique
   birthDate  DateTime
   avatarUrl  String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime?
 
   typeUserId String
   typeUser   TypeUser @relation(fields: [typeUserId], references: [id])
 
   blogs Blog[]
 
+  categoriesCreated Category[] @relation("CreatedBy")
+  categoriesUpdated Category[] @relation("UpdatedBy")
+
   @@map("users")
 }
 
 model TypeUser {
-  id    String @id @default(uuid())
-  title String
+  id         String @id @default(uuid())
+  title      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime?
 
   users User[]
 
