@@ -16,6 +16,19 @@ export class InMemoryBlogsRepository implements BlogRepository {
         return blog;
     }
 
+    async listAndSearch(page: number, itemsPerPage: number, search?: string | undefined): Promise<Blog[]> {
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        const filteredRecords = this.blogs.filter(type => {
+            if(!search) return true;
+            
+            return type.title.toLowerCase().includes(search.toLowerCase());
+        });
+
+        return filteredRecords.slice(startIndex, endIndex);
+    }
+
     async findManyByCategoryId(categoryId: string): Promise<Blog[]> {
         return this.blogs.filter(
             (blog) => blog.categoryId === categoryId

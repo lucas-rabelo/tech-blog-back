@@ -22,6 +22,26 @@ export class PrismaBlogRepository implements BlogRepository {
         return PrismaBlogMapper.toDomain(blog)
     }
 
+    async listAndSearch(page: number, itemsPerPage: number, search?: string | undefined): Promise<Blog[]> {
+        const skip = Number((page - 1) * itemsPerPage);
+        const take = Number(itemsPerPage);
+
+        const blogs = await this.prisma.blog.findMany({
+            orderBy: [
+                {
+                    updatedAt: 'desc',
+                },
+            ],
+            where: {
+                OR: [{ title: { contains: search || '', mode: 'insensitive' } }],
+            },
+            skip: skip,
+            take: take,
+        });
+
+        return blogs.map(PrismaBlogMapper.toDomain)
+    }
+
     async findManyByCategoryId(categoryId: string): Promise<Blog[]> {
         const blogs = await this.prisma.blog.findMany({
             where: {
