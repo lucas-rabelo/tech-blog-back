@@ -1,8 +1,14 @@
+import { Body, Controller, Get, Param, Post, Put, Query } from "@nestjs/common";
+
+// Dto's
+import { CreateAndUpdateTypeUser } from "../dtos/type-user/create-and-update-type-user-body";
+
+// View Models
+import { TypeUserViewModel } from "../view-models/type-users/type-user-view-model";
+
+// Use Cases
 import { EditTypeUser } from "@application/use-cases/typeUser/edit/edit-type-user";
 import { SendTypeUser } from "@application/use-cases/typeUser/send/send-type-user";
-import { Body, Controller, Get, Param, Post, Put, Query } from "@nestjs/common";
-import { CreateAndUpdateTypeUser } from "../dtos/type-user/create-and-update-type-user-body";
-import { TypeUserViewModel } from "../view-models/type-users/type-user-view-model";
 import { ListTypeUser } from "@application/use-cases/typeUser/list/list-type-user";
 
 @Controller('type-users')
